@@ -40,7 +40,7 @@ const RegistrationPage = () => {
       });
 
       try {
-        const response = await axios.post('https://9834-103-240-170-60.ngrok-free.app/api/register', {
+        const response = await axios.post('http://localhost:3000/api/register', {
           firstName,
           lastName,
           email,

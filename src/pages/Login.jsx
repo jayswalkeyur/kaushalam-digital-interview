@@ -24,7 +24,7 @@ const LoginPage = () => {
     e.preventDefault();
     if (validate()) {
       try {
-        const response = await axios.post('https://9834-103-240-170-60.ngrok-free.app/api/login', {
+        const response = await axios.post('http://localhost:3000/api/login', {
           email,
           password,
         });
@@ -84,7 +84,7 @@ const LoginPage = () => {
           </button>
           <p className="text-center mt-3">
             Don't have an account?{' '}
-            <button type="button" onClick={() => navigate('/dashboard')} className="btn btn-link">
+            <button type="button" onClick={() => navigate('/')} className="btn btn-link">
               Register
             </button>
           </p>

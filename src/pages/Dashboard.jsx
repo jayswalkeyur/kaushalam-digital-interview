@@ -1,72 +1,45 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import AddTask from '../TaskPages/addTask';
-import ViewTasks from '../TaskPages/viewTask';
+import Navbar from './Navbar';
+import Footer from './footer';
 
 const Dashboard = () => {
+  // Sample data for tasks
+  const tasks = [
+    { id: 1, title: "Pending Tasks", description: "You have 5 pending tasks.", color: "bg-primary" },
+    { id: 2, title: "Completed Tasks", description: "You have completed 10 tasks.", color: "bg-success" },
+    { id: 3, title: "Overdue Tasks", description: "You have 2 overdue tasks.", color: "bg-warning" },
+    { id: 4, title: "New Tasks", description: "You have 3 new tasks.", color: "bg-info" },
+    { id: 5, title: "In Progress", description: "You have 4 tasks in progress.", color: "bg-secondary" },
+    { id: 6, title: "Upcoming Deadlines", description: "You have 2 upcoming deadlines.", color: "bg-danger" },
+    { id: 7, title: "Client Tasks", description: "You have 3 client-related tasks.", color: "bg-dark text-white" },
+    { id: 8, title: "Team Tasks", description: "You have 5 team tasks assigned.", color: "bg-warning" },
+    { id: 9, title: "Archived Tasks", description: "You have 7 archived tasks.", color: "bg-success" },
+  ];
+
   return (
     <div className="container-fluid">
-      <div className="row">
-        <nav className="col-md-2 d-none d-md-block bg-light sidebar">
-          <div className="sidebar-sticky">
-            <h4 className="sidebar-heading">Task Management</h4>
-            <ul className="nav flex-column">
-              <li className="nav-item">
-                <Link className="nav-link" to="AddTask">Add Task</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="ViewTasks">View Tasks</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="edit-task">Edit Task</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="delete-task">Delete Task</Link>
-              </li>
-            </ul>   
-          </div>
-        </nav>
+      <Navbar />
 
-        <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-4">
-          <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 className="h2">Dashboard</h1>
-          </div>
-
-          <div className="row">
-            <div className="col-md-4 mb-4">
-              <div className="card text-white bg-primary">
+      <main role="main" className="container mt-4">
+        <div className="row justify-content-center">
+          {tasks.map(task => (
+            <div className="col-md-4 mb-4" key={task.id}>
+              <div className={`card text-white ${task.color} border-0 shadow`}>
                 <div className="card-body">
-                  <h5 className="card-title">Pending Tasks</h5>
-                  <p className="card-text">You have 5 pending tasks.</p>
+                  <h5 className="card-title">{task.title}</h5>
+                  <p className="card-text">{task.description}</p>
                   <Link to="view-tasks" className="btn btn-light">View Tasks</Link>
                 </div>
               </div>
             </div>
+          ))}
+        </div>
 
-            <div className="col-md-4 mb-4">
-              <div className="card text-white bg-success">
-                <div className="card-body">
-                  <h5 className="card-title">Completed Tasks</h5>
-                  <p className="card-text">You have completed 10 tasks.</p>
-                  <Link to="view-tasks" className="btn btn-light">View Tasks</Link>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md-4 mb-4">
-              <div className="card text-white bg-warning">
-                <div className="card-body">
-                  <h5 className="card-title">Overdue Tasks</h5>
-                  <p className="card-text">You have 2 overdue tasks.</p>
-                  <Link to="view-tasks" className="btn btn-light">View Tasks</Link>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <Outlet /> {/* This will render the selected task page */}
-        </main>
-      </div>
+        <Outlet /> {/* This will render the selected task page */}
+      </main>
+      
+      <Footer />
     </div>
   );
 };

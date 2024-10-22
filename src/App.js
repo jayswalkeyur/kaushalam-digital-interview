@@ -6,17 +6,18 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard'
 import AddTask from './TaskPages/addTask.jsx'
 import ViewTasks from './TaskPages/viewTask.jsx';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/register" element={<Registration />} />
+        <Route path="/" element={<Registration />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboard/AddTask" element={<AddTask />} />
         <Route path="/dashboard/ViewTasks" element={<ViewTasks />} />
-
       </Routes>
     </Router>
   );
